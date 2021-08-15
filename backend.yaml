@@ -19,6 +19,18 @@ spec:
         image: khouloud123456/backend:k8s
         ports:
         - containerPort: 5000
+        env:
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-username
+          - name: MONGO_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-password
+        
 ---
 apiVersion: v1
 kind: Service
