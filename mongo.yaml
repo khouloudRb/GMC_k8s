@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongo-service
-spec:
-  type: ExternalName
-  externalName: icinema-4p2wg.mongodb.net
-  
