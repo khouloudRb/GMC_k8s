@@ -19,6 +19,9 @@ spec:
         image: khouloud123456/frontend:k8s
         ports:
         - containerPort: 3000
+        env:
+          - name: DANGEROUSLY_DISABLE_HOST_CHECK
+            value: 'true'
 ---
 apiVersion: v1
 kind: Service
@@ -27,9 +30,9 @@ metadata:
 spec:
   selector:
     app: frontend
-  # type: LoadBalancer  
+  #type: LoadBalancer  
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      # nodePort: 30000
+      #nodePort: 30000
