@@ -32,7 +32,7 @@ spec:
                 key: mongo-password
         
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Service
 metadata:
   name: backend-service
