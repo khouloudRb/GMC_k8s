@@ -30,7 +30,7 @@ metadata:
 spec:
   selector:
     app: frontend
-    type: LoadBalancer  
+  type: LoadBalancer  
   ports:
     - protocol: TCP
       port: 3000
