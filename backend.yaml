@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: khouloud123456/backend:k8s
+        image: khouloud123456/backend:prometheus
         ports:
         - containerPort: 5000
         env:
@@ -35,6 +35,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  labels : 
+    app: backend-service 
   name: backend-service
 spec:
   selector:
@@ -43,3 +45,19 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-metrics-servicemonitor
+  labels:
+    app: backend-metrics-servicemonitor
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: backend-service
+  endpoints:
+  - path: /metrics
+    interval: 15s
